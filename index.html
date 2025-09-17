@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSwap - Home</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #3498db; /* Blue */
+            --accent-color: #2ecc71; /* Green */
+            --bg-color: #f4f7f9; /* Light Grey */
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --urban-goods-color: #3498db;
+            --skills-exchange-color: #e74c3c;
+            --community-hub-color: #f1c40f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--secondary-color);
+            color: var(--card-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            text-decoration: none;
+            color: white;
+            background-color: var(--accent-color);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Sections */
+        .main-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .section-card h2 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-card p {
+            color: #555;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .section-card .icon {
+            font-size: 3em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/6P93M1z/Urban-Swap-Logo.png" alt="UrbanSwap Logo">
+            <span>UrbanSwap</span>
+        </a>
+        <nav id="main-nav">
+            </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Swap, Share, Thrive.</h1>
+            <p>A new way to connect with your community, exchange goods, and share skills.</p>
+            <div class="cta-buttons">
+                <a href="urban-goods.html" class="cta-button">Browse Goods</a>
+                <a href="skills-exchange.html" class="cta-button">Find Skills</a>
+            </div>
+        </section>
+
+        <section class="main-sections">
+            <a href="urban-goods.html" class="section-card">
+                <span class="icon">📦</span>
+                <h2>Urban Goods</h2>
+                <p>Swap everything from electronics to furniture and clothing. Find new-to-you treasures in your neighborhood.</p>
+            </a>
+            <a href="skills-exchange.html" class="section-card">
+                <span class="icon">🛠️</span>
+                <h2>Skills Exchange</h2>
+                <p>Trade your expertise for someone else's. Get help with a project, learn a new language, or teach a class.</p>
+            </a>
+            <a href="community-hub.html" class="section-card">
+                <span class="icon">🤝</span>
+                <h2>Community Hub</h2>
+                <p>Connect with local groups, find volunteer opportunities, and organize community events. Build a stronger neighborhood together.</p>
+            </a>
+        </section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

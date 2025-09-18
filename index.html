@@ -296,6 +296,15 @@
             font-size: 3rem;
             color: white;
             transition: transform 0.3s ease;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .category-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
         }
 
         .category-card:hover .category-icon {
@@ -361,6 +370,20 @@
             justify-content: center;
             font-size: 4rem;
             color: white;
+            object-fit: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
         }
 
         .product-content {
@@ -746,17 +769,23 @@
 
             <section class="categories">
                 <a href="#goods" class="category-card">
-                    <div class="category-icon urban-goods">📦</div>
+                    <div class="category-icon urban-goods">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=center" alt="Urban Goods" />
+                    </div>
                     <h3>Urban Goods</h3>
                     <p>Discover amazing items from your neighbors. From vintage finds to modern tech, furniture, and everyday essentials.</p>
                 </a>
                 <a href="#skills" class="category-card">
-                    <div class="category-icon skills-exchange">🛠️</div>
+                    <div class="category-icon skills-exchange">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=200&h=200&fit=crop&crop=center" alt="Skills Exchange" />
+                    </div>
                     <h3>Skills Exchange</h3>
                     <p>Learn from experts and share your talents. Build connections through knowledge sharing and skill development.</p>
                 </a>
                 <a href="#community" class="category-card">
-                    <div class="category-icon community-hub">🤝</div>
+                    <div class="category-icon community-hub">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center" alt="Community Hub" />
+                    </div>
                     <h3>Community Hub</h3>
                     <p>Join local events, volunteer opportunities, and neighborhood initiatives. Strengthen community bonds together.</p>
                 </a>
@@ -792,7 +821,9 @@
                 <h2 class="section-title">✨ Featured Items</h2>
                 <div class="products-grid">
                     <div class="product-card">
-                        <div class="product-image">📷</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=300&fit=crop&crop=center" alt="Vintage Camera Collection" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Vintage Camera Collection</h3>
                             <p class="product-description">Classic film cameras from the 1970s-80s. Perfect working condition with original leather cases and manuals.</p>
@@ -805,7 +836,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">📚</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&crop=center" alt="Premium Book Collection" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Premium Book Collection</h3>
                             <p class="product-description">50+ sci-fi and fantasy novels including rare first editions. All books in excellent condition with protective covers.</p>
@@ -818,7 +851,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🌱</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop&crop=center" alt="Complete Garden Setup" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Complete Garden Setup</h3>
                             <p class="product-description">Professional gardening toolkit with premium tools, organic fertilizers, seeds, and planters. Perfect for urban gardening.</p>
@@ -831,7 +866,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🎸</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=center" alt="Professional Acoustic Guitar" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Professional Acoustic Guitar</h3>
                             <p class="product-description">High-quality acoustic guitar with premium sound. Includes case, picks, tuner, and beginner lesson materials.</p>
@@ -844,7 +881,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">💻</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop&crop=center" alt="Ergonomic Workspace Set" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Ergonomic Workspace Set</h3>
                             <p class="product-description">Premium laptop stand, wireless keyboard, mouse, and monitor arm. Perfect for home office setup.</p>
@@ -857,7 +896,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🏃‍♂️</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center" alt="Home Fitness Studio" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Home Fitness Studio</h3>
                             <p class="product-description">Complete home workout equipment including resistance bands, yoga mat, dumbbells, and fitness tracker.</p>
@@ -875,7 +916,9 @@
                 <h2 class="section-title">🎯 Popular Skills</h2>
                 <div class="products-grid">
                     <div class="product-card">
-                        <div class="product-image">🎨</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop&crop=center" alt="Creative Design Services" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Creative Design Services</h3>
                             <p class="product-description">Professional logo design, branding, social media graphics, and complete visual identity packages for businesses.</p>
@@ -888,7 +931,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🍳</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop&crop=center" alt="Culinary Masterclass" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Culinary Masterclass</h3>
                             <p class="product-description">Learn authentic Indian cuisine, international dishes, and baking from certified chef with 15+ years experience.</p>
@@ -901,7 +946,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🏋️‍♀️</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center" alt="Personal Fitness Training" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Personal Fitness Training</h3>
                             <p class="product-description">Certified personal trainer offering customized workout plans, nutrition guidance, and motivation coaching.</p>
@@ -914,7 +961,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🎵</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=center" alt="Music & Vocal Lessons" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Music & Vocal Lessons</h3>
                             <p class="product-description">Professional music instruction for guitar, piano, violin, and vocal training. All skill levels welcome from beginner to advanced.</p>
@@ -927,7 +976,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">💻</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center" alt="Tech & Programming" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Tech & Programming</h3>
                             <p class="product-description">Full-stack web development, mobile app creation, and programming tutorials in Python, JavaScript, and React.</p>
@@ -940,7 +991,9 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="product-image">🧘‍♀️</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop&crop=center" alt="Wellness & Yoga" />
+                        </div>
                         <div class="product-content">
                             <h3 class="product-title">Wellness & Yoga</h3>
                             <p class="product-description">Certified yoga instructor offering Hatha, Vinyasa, and meditation sessions for stress relief and flexibility improvement.</p>

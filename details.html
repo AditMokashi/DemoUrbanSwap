@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSwap - Listing Details</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2ecc71;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--secondary-color);
+            color: var(--card-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Details Page Styles */
+        .listing-details {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .listing-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .details-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .details-title {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .details-category-location {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .details-description {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .owner-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .owner-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .owner-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .owner-rating {
+            color: #f39c12;
+            font-size: 1.1em;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .request-swap-btn {
+            background-color: var(--accent-color);
+        }
+
+        .request-swap-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .message-owner-btn {
+            background-color: var(--secondary-color);
+        }
+
+        .message-owner-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .listing-details {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .listing-details {
+                flex-direction: column;
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">UrbanSwap</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="category.html?type=Item">Categories</a>
+            <a href="category.html?type=Service">Services</a>
+            <a href="category.html?type=Experience">Experiences</a>
+            <a href="profile.html">Profile</a>
+            <a href="post.html">Post Swap</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="listing-details" id="listing-details-container">
+            </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const listingId = urlParams.get('id');
+            const container = document.getElementById('listing-details-container');
+
+            const listings = [
+                { id: 1, type: 'Item', title: 'Vintage Camera', description: 'A classic film camera, model from the 1970s. Fully functional, includes original leather case. I am looking to swap for a bicycle or a professional photography session.', location: 'Navi Mumbai', image: 'https://via.placeholder.com/800x600?text=Vintage+Camera', owner: { name: 'Alex', photo: 'https://via.placeholder.com/100x100?text=A', rating: 4.5 } },
+                { id: 2, type: 'Service', title: 'Graphic Design', description: 'Offering professional graphic design services for logos, flyers, and social media content. I am seeking a swap for a website development service or an advanced art class.', location: 'Mumbai', image: 'https://via.placeholder.com/800x600?text=Graphic+Design', owner: { name: 'Bella', photo: 'https://via.placeholder.com/100x100?text=B', rating: 5.0 } },
+                { id: 3, type: 'Experience', title: 'Pottery Class', description: 'A two-hour hands-on pottery class for one person. Learn to use the wheel and hand-build basic objects. I would love to swap this for a cooking class or a massage session.', location: 'Navi Mumbai', image: 'https://via.placeholder.com/800x600?text=Pottery+Class', owner: { name: 'Charlie', photo: 'https://via.placeholder.com/100x100?text=C', rating: 4.8 } },
+                { id: 4, type: 'Item', title: 'Book Collection', description: 'A collection of 20 sci-fi novels from various authors. All books are in good condition. I am open to swapping for a musical instrument or a gardening tool set.', location: 'Mumbai', image: 'https://via.placeholder.com/800x600?text=Book+Collection', owner: { name: 'Diana', photo: 'https://via.placeholder.com/100x100?text=D', rating: 4.2 } },
+            ];
+
+            const listing = listings.find(l => l.id == listingId);
+
+            if (listing) {
+                container.innerHTML = `
+                    <img src="${listing.image}" alt="${listing.title}" class="listing-image">
+                    <div class="details-content">
+                        <h1 class="details-title">${listing.title}</h1>
+                        <p class="details-category-location">
+                            <span>${listing.type}</span> | <span>${listing.location}</span>
+                        </p>
+                        <p class="details-description">${listing.description}</p>
+                        <div class="owner-profile">
+                            <img src="${listing.owner.photo}" alt="${listing.owner.name}" class="owner-photo">
+                            <div>
+                                <strong>Owner:</strong> <span class="owner-name">${listing.owner.name}</span>
+                                <div class="owner-rating">★ ${listing.owner.rating}</div>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-button request-swap-btn">Request Swap</button>
+                            <button class="action-button message-owner-btn">Message Owner</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<p>Listing not found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

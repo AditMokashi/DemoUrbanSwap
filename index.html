@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSwap - Swap, Share, Thrive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b3b8;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-hover: rgba(255, 255, 255, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+            --border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 50%, #26314e 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 46, 0.9);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1); 
+            }
+            25% { 
+                transform: translateY(-8px) scale(1.02); 
+            }
+            50% { 
+                transform: translateY(-12px) scale(1.05); 
+            }
+            75% { 
+                transform: translateY(-5px) scale(1.02); 
+            }
+        }
+
+        .logo:hover {
+            transform: scale(1.1) translateY(-5px);
+            animation-play-state: paused;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: var(--shadow);
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { 
+                box-shadow: var(--shadow);
+                transform: rotate(0deg);
+            }
+            50% { 
+                box-shadow: 0 12px 40px rgba(233, 69, 96, 0.4);
+                transform: rotate(5deg);
+            }
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item a, .login-btn {
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav-item a:hover {
+            background: var(--glass);
+            border-color: var(--border);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+            border: none;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--highlight));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: buttonsFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes buttonsFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            33% { 
+                transform: translateY(-10px);
+            }
+            66% { 
+                transform: translateY(-15px);
+            }
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            animation: buttonBob 3s ease-in-out infinite;
+        }
+
+        .cta-button:nth-child(1) {
+            animation-delay: -0.5s;
+        }
+
+        .cta-button:nth-child(2) {
+            animation-delay: -1s;
+        }
+
+        @keyframes buttonBob {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                box-shadow: var(--shadow);
+            }
+            50% { 
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: var(--shadow-hover);
+            }
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, var(--success), #2ecc71);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: var(--shadow-hover);
+            animation-play-state: paused;
+        }
+
+        /* Category Cards */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .category-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .category-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .urban-goods { background: linear-gradient(135deg, var(--accent), #2980b9); }
+        .skills-exchange { background: linear-gradient(135deg, var(--highlight), #c0392b); }
+        .community-hub { background: linear-gradient(135deg, var(--warning), #d68910); }
+
+        .category-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 50px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            object-fit: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .product-location {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--glass);
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin-bottom: 80px;
+            border: 1px solid var(--border);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            margin-bottom: 80px;
+        }
+
+        .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .guide-step {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .guide-step:hover {
+            background: var(--glass-hover);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .guide-step h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .guide-step p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+        }
+
+        .modal h2 {
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--glass);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--highlight);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--glass);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--highlight), var(--warning));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">🔄</div>
+                <span class="logo-text">UrbanSwap</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home">Home</a></li>
+                    <li class="nav-item"><a href="#about">About</a></li>
+                    <li class="nav-item"><a href="#goods">Urban Goods</a></li>
+                    <li class="nav-item"><a href="#skills">Skills</a></li>
+                    <li class="nav-item"><a href="#guide">Guide</a></li>
+                    <li class="nav-item"><a href="#community">Community</a></li>
+                    <button class="login-btn" onclick="openLoginModal()">Login</button>
+                </ul>
+                <button class="mobile-menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero" id="home">
+                <h1>Swap, Share, Thrive</h1>
+                <p>Transform your neighborhood into a vibrant sharing economy</p>
+                <div class="cta-buttons">
+                    <a href="#goods" class="cta-button cta-primary">Start Swapping</a>
+                    <a href="#community" class="cta-button cta-secondary">Join Community</a>
+                </div>
+            </section>
+
+            <section class="about-section" id="about">
+                <div class="about-content">
+                    <h2>🌟 About UrbanSwap</h2>
+                    <p>UrbanSwap is more than just a marketplace – it's a movement towards sustainable living and community building. We connect neighbors to share resources, skills, and experiences, creating stronger, more resilient communities.</p>
+                    <p>Founded on the principles of the circular economy, we believe that sharing is caring – for both our wallets and our planet. Join thousands of urban dwellers who are already making their neighborhoods better, one swap at a time.</p>
+                    <p>🌍 <strong>Sustainable:</strong> Reduce waste and environmental impact<br>
+                    🤝 <strong>Social:</strong> Build meaningful connections with neighbors<br>
+                    💰 <strong>Economic:</strong> Save money while earning from unused items</p>
+                </div>
+            </section>
+
+            <section class="categories">
+                <a href="#goods" class="category-card">
+                    <div class="category-icon urban-goods">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=center" alt="Urban Goods" />
+                    </div>
+                    <h3>Urban Goods</h3>
+                    <p>Discover amazing items from your neighbors. From vintage finds to modern tech, furniture, and everyday essentials.</p>
+                </a>
+                <a href="#skills" class="category-card">
+                    <div class="category-icon skills-exchange">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=200&h=200&fit=crop&crop=center" alt="Skills Exchange" />
+                    </div>
+                    <h3>Skills Exchange</h3>
+                    <p>Learn from experts and share your talents. Build connections through knowledge sharing and skill development.</p>
+                </a>
+                <a href="#community" class="category-card">
+                    <div class="category-icon community-hub">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=200&h=200&fit=crop&crop=center" alt="Community Hub" />
+                    </div>
+                    <h3>Community Hub</h3>
+                    <p>Join local events, volunteer opportunities, and neighborhood initiatives. Strengthen community bonds together.</p>
+                </a>
+            </section>
+
+            <section class="guide-section" id="guide">
+                <h2 class="section-title">📚 How It Works</h2>
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <h3>Sign Up & Browse</h3>
+                        <p>Create your free account and explore thousands of items and services available in your neighborhood. Use filters to find exactly what you need.</p>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <h3>List Your Items</h3>
+                        <p>Upload photos and descriptions of items you want to swap or sell. Set your preferred exchange method - money, trade, or skill exchange.</p>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <h3>Connect & Negotiate</h3>
+                        <p>Message other users directly through our secure platform. Arrange meetups, discuss terms, and build trust within your community.</p>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <h3>Meet & Exchange</h3>
+                        <p>Meet in safe, public locations or use our verified pickup points. Complete the exchange and rate your experience to help build community trust.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section" id="goods">
+                <h2 class="section-title">✨ Featured Items</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=300&fit=crop&crop=center" alt="Vintage Camera Collection" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Vintage Camera Collection</h3>
+                            <p class="product-description">Classic film cameras from the 1970s-80s. Perfect working condition with original leather cases and manuals.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹5,000</span>
+                                <span class="product-location">📍 Navi Mumbai</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--accent), #2980b9);">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&crop=center" alt="Premium Book Collection" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Premium Book Collection</h3>
+                            <p class="product-description">50+ sci-fi and fantasy novels including rare first editions. All books in excellent condition with protective covers.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹3,500</span>
+                                <span class="product-location">📍 Mumbai Central</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--highlight), #c0392b);">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop&crop=center" alt="Complete Garden Setup" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Complete Garden Setup</h3>
+                            <p class="product-description">Professional gardening toolkit with premium tools, organic fertilizers, seeds, and planters. Perfect for urban gardening.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹4,200</span>
+                                <span class="product-location">📍 Thane West</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--success), #27ae60);">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=center" alt="Professional Acoustic Guitar" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Professional Acoustic Guitar</h3>
+                            <p class="product-description">High-quality acoustic guitar with premium sound. Includes case, picks, tuner, and beginner lesson materials.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹12,000</span>
+                                <span class="product-location">📍 Pune</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--warning), #d68910);">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop&crop=center" alt="Ergonomic Workspace Set" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Ergonomic Workspace Set</h3>
+                            <p class="product-description">Premium laptop stand, wireless keyboard, mouse, and monitor arm. Perfect for home office setup.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹6,500</span>
+                                <span class="product-location">📍 Bandra</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--accent), #2980b9);">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center" alt="Home Fitness Studio" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Home Fitness Studio</h3>
+                            <p class="product-description">Complete home workout equipment including resistance bands, yoga mat, dumbbells, and fitness tracker.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹8,000</span>
+                                <span class="product-location">📍 Navi Mumbai</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--success), #27ae60);">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section" id="skills">
+                <h2 class="section-title">🎯 Popular Skills</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop&crop=center" alt="Creative Design Services" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Creative Design Services</h3>
+                            <p class="product-description">Professional logo design, branding, social media graphics, and complete visual identity packages for businesses.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹2,000/project</span>
+                                <span class="product-location">📍 Andheri</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--highlight), #c0392b);">Book Session</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop&crop=center" alt="Culinary Masterclass" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Culinary Masterclass</h3>
+                            <p class="product-description">Learn authentic Indian cuisine, international dishes, and baking from certified chef with 15+ years experience.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹800/session</span>
+                                <span class="product-location">📍 Thane</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--warning), #d68910);">Book Session</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center" alt="Personal Fitness Training" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Personal Fitness Training</h3>
+                            <p class="product-description">Certified personal trainer offering customized workout plans, nutrition guidance, and motivation coaching.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹1,200/session</span>
+                                <span class="product-location">📍 Powai</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--success), #27ae60);">Book Session</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=center" alt="Music & Vocal Lessons" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Music & Vocal Lessons</h3>
+                            <p class="product-description">Professional music instruction for guitar, piano, violin, and vocal training. All skill levels welcome from beginner to advanced.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹1,000/hr</span>
+                                <span class="product-location">📍 Borivali</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--accent), #2980b9);">Book Session</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center" alt="Tech & Programming" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Tech & Programming</h3>
+                            <p class="product-description">Full-stack web development, mobile app creation, and programming tutorials in Python, JavaScript, and React.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹1,500/session</span>
+                                <span class="product-location">📍 Navi Mumbai</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--highlight), #c0392b);">Book Session</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop&crop=center" alt="Wellness & Yoga" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Wellness & Yoga</h3>
+                            <p class="product-description">Certified yoga instructor offering Hatha, Vinyasa, and meditation sessions for stress relief and flexibility improvement.</p>
+                            <div class="product-meta">
+                                <span class="product-price">₹600/class</span>
+                                <span class="product-location">📍 Juhu</span>
+                            </div>
+                            <button class="action-button" style="background: linear-gradient(135deg, var(--success), #27ae60);">Book Session</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8.2K</div>
+                    <div class="stat-label">Successful Swaps</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25K+</div>
+                    <div class="stat-label">Listed Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Neighborhoods</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeLoginModal()">&times;</button>
+            <h2>Welcome Back!</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="modal-btn btn-primary">Sign In</button>
+                    <button type="button" class="modal-btn btn-secondary" onclick="showSignupForm()">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeSignupModal()">&times;</button>
+            <h2>Join UrbanSwap</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" name="password" required placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required placeholder="Enter your area/neighborhood">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="modal-btn btn-primary">Create Account</button>
+                    <button type="button" class="modal-btn btn-secondary" onclick="showLoginForm()">Back to Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="fab" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Login/Signup Modal Functions
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+
+        function showSignupForm() {
+            closeLoginModal();
+            document.getElementById('signupModal').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            closeSignupModal();
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+            if (event.target === signupModal) {
+                closeSignupModal();
+            }
+        }
+
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulate login process
+            if (email && password) {
+                alert('Welcome back! Login successful.');
+                closeLoginModal();
+                
+                // Update UI to show logged-in state
+                const loginBtn = document.querySelector('.login-btn');
+                loginBtn.textContent = 'Profile';
+                loginBtn.onclick = function() {
+                    alert('Profile page - Coming soon!');
+                };
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const location = document.getElementById('location').value;
+            
+            // Simulate signup process
+            if (fullName && email && password && location) {
+                alert('Welcome to UrbanSwap! Account created successfully.');
+                closeSignupModal();
+                
+                // Update UI to show logged-in state
+                const loginBtn = document.querySelector('.login-btn');
+                loginBtn.textContent = 'Profile';
+                loginBtn.onclick = function() {
+                    alert('Profile page - Coming soon!');
+                };
+            }
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (basic implementation)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add some interactivity to product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.product-title').textContent;
+                alert(`${title} - Full details page coming soon!`);
+            });
+        });
+
+        // Add click handlers to category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = this.querySelector('h3').textContent;
+                alert(`${title} section - Advanced features coming soon!`);
+            });
+        });
+
+        // FAQ Section (expandable)
+        function createFAQSection() {
+            const faqData = [
+                {
+                    question: "How does UrbanSwap ensure safety?",
+                    answer: "We have verified user profiles, secure messaging, public meetup recommendations, and a robust rating system to ensure safe exchanges."
+                },
+                {
+                    question: "What can I swap or sell?",
+                    answer: "Almost anything! Electronics, furniture, books, clothes, tools, art supplies, and services like tutoring, cooking, or repairs."
+                },
+                {
+                    question: "How do payments work?",
+                    answer: "You can choose cash, digital payments, item trades, or skill exchanges. We support multiple payment methods for your convenience."
+                }
+            ];
+            
+            // This would create an FAQ section dynamically
+            console.log('FAQ data ready for implementation:', faqData);
+        }
+
+        // Initialize features
+        createFAQSection();
+
+        // Add some dynamic stats animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalNumber = target.textContent;
+                        // Simple animation could be added here
+                        target.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            target.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                });
+            });
+
+            statNumbers.forEach(stat => observer.observe(stat));
+        }
+
+        animateStats();
+    </script>
+</body>
+</html>

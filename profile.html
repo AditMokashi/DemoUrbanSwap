@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSwap - My Profile</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2ecc71;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--secondary-color);
+            color: var(--card-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Profile Page Styles */
+        .profile-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .profile-sidebar {
+            width: 320px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .user-info {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .username {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .bio {
+            color: #555;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .gamification {
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .gamification h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .points {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            font-size: 2.2em;
+            cursor: help;
+            transform: rotate(0deg);
+            animation: bounce 0.5s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        .redeem-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .redeem-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .profile-main-content {
+            flex: 1;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .tab-button.active {
+            color: var(--secondary-color);
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            animation: slideIn 0.3s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .list-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .list-item-status {
+            font-size: 0.9em;
+            padding: 4px 10px;
+            border-radius: 50px;
+            color: white;
+        }
+
+        .status-completed { background-color: var(--accent-color); }
+        .status-pending { background-color: #f39c12; }
+        .status-active { background-color: var(--secondary-color); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .profile-container {
+                flex-direction: column;
+            }
+            .profile-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">UrbanSwap</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="category.html?type=Item">Categories</a>
+            <a href="category.html?type=Service">Services</a>
+            <a href="category.html?type=Experience">Experiences</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="post.html">Post Swap</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="user-info">
+                    <img src="https://via.placeholder.com/150x150?text=Jane" alt="Profile Photo" class="profile-photo">
+                    <h2 class="username">Jane Doe</h2>
+                    <p class="bio">Passionate swapper and community member. I love finding unique items and sharing my skills!</p>
+                </div>
+                <div class="gamification">
+                    <h3>My Points & Badges</h3>
+                    <p class="points">🌟 <span id="user-points">1250</span></p>
+                    <div class="badges">
+                        <span class="badge" title="First Swap">🥇</span>
+                        <span class="badge" title="Active Contributor">💡</span>
+                        <span class="badge" title="Trusted Member">🛡️</span>
+                    </div>
+                    <a href="#" class="redeem-btn">Redeem Points</a>
+                </div>
+            </aside>
+
+            <section class="profile-main-content">
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="my-swaps">My Swaps</button>
+                    <button class="tab-button" data-tab="my-listings">My Listings</button>
+                    <button class="tab-button" data-tab="my-points">My Points</button>
+                </div>
+
+                <div id="my-swaps" class="tab-content active">
+                    <h3>My Swaps</h3>
+                    <div class="swap-list">
+                        </div>
+                </div>
+
+                <div id="my-listings" class="tab-content">
+                    <h3>My Listings</h3>
+                    <div class="listing-grid">
+                        </div>
+                </div>
+
+                <div id="my-points" class="tab-content">
+                    <h3>Points History</h3>
+                    <ul class="points-history">
+                        </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    button.classList.add('active');
+                    const targetTab = document.getElementById(button.dataset.tab);
+                    targetTab.classList.add('active');
+                });
+            });
+
+            const mySwaps = [
+                { title: 'My Vintage Camera for his Bicycle', status: 'Completed' },
+                { title: 'My Graphic Design for her Web Dev service', status: 'Pending' }
+            ];
+
+            const myListings = [
+                { title: 'Vintage Camera', category: 'Item', location: 'Navi Mumbai', status: 'Active' },
+                { title: 'Graphic Design Service', category: 'Service', location: 'Mumbai', status: 'Active' }
+            ];
+
+            const pointsHistory = [
+                'Received 50 points for completing a swap.',
+                'Earned 20 points for a new listing.',
+                'Redeemed 100 points for a gift card.'
+            ];
+
+            function renderContent(containerId, items) {
+                const container = document.querySelector(`#${containerId} .swap-list, #${containerId} .listing-grid, #${containerId} .points-history`);
+                container.innerHTML = '';
+                items.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'list-item';
+                    
+                    if (containerId === 'my-points') {
+                        el.innerHTML = `<span>${item}</span>`;
+                        el.classList.add('points-history-item');
+                    } else {
+                        const statusClass = `status-${item.status.toLowerCase()}`;
+                        el.innerHTML = `
+                            <div class="list-item-details">
+                                <span class="list-item-title">${item.title}</span>
+                                ${item.category ? `<br><small>${item.category} | ${item.location}</small>` : ''}
+                            </div>
+                            <span class="list-item-status ${statusClass}">${item.status}</span>
+                        `;
+                    }
+                    container.appendChild(el);
+                });
+            }
+
+            renderContent('my-swaps', mySwaps);
+            renderContent('my-listings', myListings);
+            renderContent('my-points', pointsHistory);
+        });
+    </script>
+</body>
+</html>
